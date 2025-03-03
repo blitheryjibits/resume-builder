@@ -67,13 +67,13 @@ export default function EducationInformationSection({ updateParent }) {
 
 
   return (
-    <div data-id={currentCourseId}>
+    <div data-id={currentCourseId} className="form-section">
       <h3>Education</h3>
-      <div>
+      <div className='input-field-wrapper'>
         {Object.entries(educationInfo.courses.find((course) => 
         course.id === currentCourseId)).map(([key, value]) => 
           {
-            if(key !== "id")return (<div key={key}> 
+            if(key !== "id")return (<div key={key} className="input-field-container"> 
             <label>{key}:
               </label> 
               <input type="text" name={key} value={value} 
@@ -81,9 +81,11 @@ export default function EducationInformationSection({ updateParent }) {
               onBlur={key === "schoolName" ? () => setCourseId(value) : undefined} 
               /> 
               </div>) })}
-      </div>
+      <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%', padding: '1rem' }}>
       <button onClick={addCourse}>Add Course</button>
       <button onClick={selectNextCourse}>Next Course</button>
+      </div>
+      </div>
     </div>
   );
 }
