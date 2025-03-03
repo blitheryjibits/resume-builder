@@ -7,8 +7,14 @@ import PropTypes from "prop-types";
 const MyForm = ({ setAppData }) => {
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted");
+    if (import.meta.env.MODE === 'development') {
+      e.preventDefault();
+      console.log('Form submission prevented in development mode.');
+  } else {
+      // Handle form submission in production mode
+      e.preventDefault();
+      console.log("Form submitted");
+  }
   };
 
   const updateContactDetails = (info) => { 
