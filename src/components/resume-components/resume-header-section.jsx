@@ -20,13 +20,6 @@ export default function HeaderSection({ className, data }) {
 }
 
 HeaderSection.propTypes = {
-    data: PropTypes.array,
-    firstName: PropTypes.string,
-    lastName: PropTypes.string,
-    phone: PropTypes.string,
-    email: PropTypes.string,
-    linkedIn: PropTypes.string,
-    github: PropTypes.string,
-    website: PropTypes.string,
+    data: PropTypes.object,
     className: PropTypes.string
 };
