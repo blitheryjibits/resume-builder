@@ -96,9 +96,9 @@ export default function EducationInformationSection({ updateParent }) {
       <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', 
                     paddingTop: '1rem',
        }}>
-      <button onClick={selectPreviousCourse}>&lt;</button>
-      <button onClick={addCourse}>+</button>
-      <button onClick={selectNextCourse}>&gt;</button>
+      <button onClick={selectPreviousCourse} type='button'>&lt;</button>
+      <button onClick={addCourse} type='button'>+</button>
+      <button onClick={selectNextCourse} type='button'>&gt;</button>
       </div>
       </div>
     </div>
