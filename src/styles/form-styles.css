@@ -1,5 +1,6 @@
 .form-container {
     justify-self: start;
+    width: 50%;
 }
 
 form {
@@ -11,16 +12,16 @@ form {
     box-shadow: 0 0 10px rgba(237, 231, 231, 0.1);
     color: black;
     display: flex;
+    
     flex-direction: column;
     gap: 2rem;
   }
   
-  form > div {
+  .form-section {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 0.5rem;
     align-items: start;
-    /* text-align: center; */
   }
   
   h3 {
@@ -29,16 +30,20 @@ form {
     justify-content: center;
   }
   
-  form>div>div {
+  /* style for the form fields */
+  .input-field-wrapper {
     display: flex;
-    width: 100%;
+    flex-wrap: wrap;
     text-align: left;
-    flex-direction: column;
+  }
+
+.input-field-container {
+  flex: 1 1 200px;
   }
   
   /* Style for the form labels */
   label {
-    width: 150px;
+    width: 80%;
     font-weight: bold;
     color: #333;
     float: left;
