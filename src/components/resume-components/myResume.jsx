@@ -7,7 +7,8 @@ export default function CreateResume({ appData }) {
   return (
     <>
       <div className="resume-container">
-        <h1 className="resume-title">Resume</h1>
+        <h3 className="resume-title">Resume</h3>
+        {/* add download button */}
         <div className="page">
           <HeaderSection className="res-head" data={ appData.contactDetails } />
           <EducationSection data={ appData.courses } />
