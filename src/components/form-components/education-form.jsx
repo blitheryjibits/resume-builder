@@ -41,8 +41,20 @@ export default function EducationInformationSection({ updateParent }) {
       // % operator loops the courseIndex
       setCurrentCourseId(educationInfo.courses[(courseIndex + 1) % educationInfo.courses.length].id);
   }
+  
+  const selectPreviousCourse = () => {
+    const courseIndex = educationInfo.courses.indexOf(educationInfo.courses.find(course => {
+        return course.id == currentCourseId;
+    }));
+    // Use the % operator to loop the courseIndex
+    setCurrentCourseId(educationInfo.courses[
+        (courseIndex - 1 + educationInfo.courses.length) % educationInfo.courses.length
+    ].id);
+  }
 
   const addCourse = () => {
+    const _course = educationInfo.courses.find(course => course.id == currentCourseId)
+    if (!_course.schoolName.length > 0) return;
     const newCourse = createCourse();
     setCourseId(newCourse);
     setEducationInfo(prevData => ({
@@ -81,9 +93,12 @@ export default function EducationInformationSection({ updateParent }) {
               onBlur={key === "schoolName" ? () => setCourseId(value) : undefined} 
               /> 
               </div>) })}
-      <div style={{ display: 'flex', justifyContent: 'space-around', width: '100%', padding: '1rem' }}>
-      <button onClick={addCourse}>Add Course</button>
-      <button onClick={selectNextCourse}>Next Course</button>
+      <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', 
+                    paddingTop: '1rem',
+       }}>
+      <button onClick={selectPreviousCourse}>&lt;</button>
+      <button onClick={addCourse}>+</button>
+      <button onClick={selectNextCourse}>&gt;</button>
       </div>
       </div>
     </div>
