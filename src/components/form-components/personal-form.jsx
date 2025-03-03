@@ -24,71 +24,20 @@ export default function PersonalInformationSection({ updateParent }) {
   }, [personalInfo]);
 
     return (
-      <div>
+      <div className="form-section">
         <h3>Personal Information</h3>
-        <div>
-          <label>First Name:</label>
-          <input
-            type="text"
-            name="firstName"
-            value={personalInfo.firstName}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Last Name:</label>
-          <input
-            type="text"
-            name="lastName"
-            value={personalInfo.lastName}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Phone Number:</label>
-          <input
-            type="tel"
-            name="phoneNumber"
-            value={personalInfo.phoneNumber}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={personalInfo.email}
-            onChange={handleChange}
-          />
-        </div>
-        {/* Change the hardcoded social media fields to a dynamic field that can be added or removed */}
-        <div>
-          <label>LinkedIn:</label>
-          <input
-            type="text"
-            name="linkedIn"
-            value={personalInfo.linkedIn}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Github:</label>
-          <input
-            type="text"
-            name="github"
-            value={personalInfo.github}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Website:</label>
-          <input
-            type="text"
-            name="website"
-            value={personalInfo.website}
-            onChange={handleChange}
-          />
+        <div className='input-field-wrapper'>
+            {Object.entries(personalInfo).map(([key, value]) => (
+                <div key={key} className="input-field-container">
+                    <label>{key.charAt(0).toUpperCase() + key.slice(1)}:</label>
+                    <input
+                        type={key === 'email' ? 'email' : key === 'phoneNumber' ? 'tel' : 'text'}
+                        name={key}
+                        value={value}
+                        onChange={handleChange}
+                    />
+                </div>
+            ))}
         </div>
       </div>
     );
