@@ -1,6 +1,38 @@
 import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
 
-export default function WorkExperienceSection({ formData, handleChange }) {
+export default function WorkExperienceSection({ updateParent }) {
+  const [workExperience, setWorkExperience] = useState({
+    experience: [
+      {
+        companyName: "",
+        jobTitle: "",
+        startDate: "",
+        endDate: "",
+        responsibilities: "",
+        id: "",
+      }
+    ]
+  }); // end useState
+
+  const [currentId, setCurrentId] = useState(0);
+  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setWorkExperience((prevData) => ({
+      ...prevData,
+      experience: prevData.experience.map((job) => { 
+        if (job.id === currentId) { 
+          return { ...job, [name]: value }; // Update the specific job 
+          }  job; // Return the job unchanged if it doesn't match 
+      }) // end map
+    })) // end setState
+  } // end handleChange
+
+  useEffect(() => {
+    updateParent(workExperience.experience)
+  }, [workExperience.experience]);
+
   return (
     <div>
         <h3>Work Experience</h3>
@@ -9,7 +41,7 @@ export default function WorkExperienceSection({ formData, handleChange }) {
         <input
           type="text"
           name="companyName"
-          value={formData.companyName}
+          value={workExperience.companyName}
           onChange={handleChange}
         />
       </div>
@@ -18,7 +50,7 @@ export default function WorkExperienceSection({ formData, handleChange }) {
         <input
           type="text"
           name="jobTitle"
-          value={formData.jobTitle}
+          value={workExperience.jobTitle}
           onChange={handleChange}
         />
       </div>
@@ -27,7 +59,7 @@ export default function WorkExperienceSection({ formData, handleChange }) {
         <input
           type="text"
           name="startDate"
-          value={formData.startDate}
+          value={workExperience.startDate}
           onChange={handleChange}
         />
       </div>
@@ -36,7 +68,7 @@ export default function WorkExperienceSection({ formData, handleChange }) {
         <input
           type="text"
           name="endDate"
-          value={formData.endDate}
+          value={workExperience.endDate}
           onChange={handleChange}
         />
       </div>
@@ -44,7 +76,7 @@ export default function WorkExperienceSection({ formData, handleChange }) {
         <label>Responsibilities:</label>
         <textarea
           name="responsibilities"
-          value={formData.responsibilities}
+          value={workExperience.responsibilities}
           onChange={handleChange}
         />
       </div>
@@ -60,5 +92,8 @@ WorkExperienceSection.propTypes = {
     endDate: PropTypes.string.isRequired,
     responsibilities: PropTypes.string.isRequired,
   }).isRequired,
+  
   handleChange: PropTypes.func.isRequired,
+  updateParent: PropTypes.func,
+
 };

@@ -1,0 +1,40 @@
+.resume-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.page {
+    background-color: aliceblue;
+    width: 90%;
+    aspect-ratio: 1/1.414;
+    margin-top: 4rem;
+    color: black;
+    box-shadow: 2px 4px 9px 7px;
+    /* display: grid;
+    grid-auto-rows: minmax(min-content, max-content);
+    gap: 10px; */
+    /* A4 paper 1240 x 1754 in pixels */
+}
+.resume-container{
+    
+    /* background-color: aqua; */
+}
+.resume-title{}
+
+.res-head{
+    height: min(10%);
+    font-family: 'Times New Roman', Times, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contact-info {
+    display: flex;
+    justify-content: center;
+}
+.person-info{}
+.work-experience{}
+.education{}
+.projects {}

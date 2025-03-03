@@ -1,13 +1,26 @@
-import './App.css';
-import MyForm from "./components/form-builder"
+import "./styles/app.css";
+import "./styles/form-styles.css";
+// import "./styles/resumeStyle.css";
+import "./styles/app-styles.css";
+import MyForm from "./components/form-state-controller";
+import MyResume from "./components/resume-components/myResume";
+import { useState } from "react";
 
 function App() {
+  const [appData, setAppData] = useState({
+    contactDetails: {},
+    courses: [],
+    skills: [],
+    experience: [],
+    projects: [],
+  });
 
   return (
-    <>
-      <MyForm />
-    </>
-  )
+    <div className="main-container">
+      <MyForm setAppData={setAppData} />
+      <MyResume appData={appData} />
+    </div>
+  );
 }
 
-export default App
+export default App;
