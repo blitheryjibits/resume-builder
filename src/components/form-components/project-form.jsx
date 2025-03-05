@@ -28,8 +28,9 @@ export default function ProjectSection({ formData, handleChange }) {
 
 ProjectSection.propTypes = {
   formData: PropTypes.shape({
-    projectName: PropTypes.string.isRequired,
+    projectName: PropTypes.string.isRequired, // remove after mapping function is implemented
     projectDescription: PropTypes.string.isRequired,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
 };
