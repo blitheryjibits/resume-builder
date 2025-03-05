@@ -8,10 +8,10 @@ export default function EducationInformationSection({ updateParent }) {
   const [educationInfo, setEducationInfo] = useState({
     courses: [{
       schoolName: "", 
-        degree: "",
-        fieldOfStudy: "",
-        graduationYear: "",
-        id: 0
+      graduationYear: "",
+      degree: "",
+      GPA: "",
+      id: 0
       },
     ]
   });
@@ -88,7 +88,7 @@ export default function EducationInformationSection({ updateParent }) {
             if(key !== "id")return (<div key={key} className="input-field-container"> 
             <label>{key}:
               </label> 
-              <input type="text" name={key} value={value} 
+              <input type="text" name={key} value={value} className={`input-${key}`}
               onChange={(e) => handleChange(e)} 
               onBlur={key === "schoolName" ? () => setCourseId(value) : undefined} 
               /> 
@@ -109,10 +109,7 @@ EducationInformationSection.propTypes = {
   courseId: PropTypes.number,
   coursesArray: PropTypes.arrayOf (
     PropTypes.shape({
-    schoolName: PropTypes.string,
-    degree: PropTypes.string,
-    fieldOfStudy: PropTypes.string,
-    graduationYear: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   })
 ),
   handleChange: PropTypes.func,
