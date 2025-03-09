@@ -1,7 +1,7 @@
 import PersonalInformationSection from "./form-components/personal-form";
 import EducationInformationSection from "./form-components/education-form";
-// import WorkExperienceSection from "./form-components/work-experience-form";
-// import ProjectSection from "./form-components/project-form";
+import WorkExperienceSection from "./form-components/work-experience-form";
+import ProjectSection from "./form-components/project-form";
 import PropTypes from "prop-types";
 
 const MyForm = ({ setAppData }) => {
@@ -17,21 +17,28 @@ const MyForm = ({ setAppData }) => {
   }
   };
 
-  const updateContactDetails = (info) => { 
+  const updateContactInfo = (info) => { 
     setAppData((prevData) => ({ ...prevData, contactDetails: info, })); }
 
   const updateCourseInfo = (info) => {
     setAppData((prevData) => ({ ...prevData, courses: info, }));
   }
 
+  const updateProjectInfo = (info) => {
+    setAppData((prevData) => ({ ...prevData, projects: info, }));
+  }
+
+  const updateExperienceInfo = (info) => {
+    setAppData((prevData) => ({ ...prevData, experience: info, }));
+  }
   return (
     <div className="form-container">
       <h1>Job Application Form</h1>
       <form onSubmit={handleSubmit}>
-        <PersonalInformationSection updateParent={updateContactDetails} />
+        <PersonalInformationSection updateParent={updateContactInfo} />
         <EducationInformationSection updateParent={updateCourseInfo} />
-        {/* <WorkExperienceSection />
-        <ProjectSection /> */}
+        <WorkExperienceSection updateParent={updateExperienceInfo} />
+        <ProjectSection updateParent={updateProjectInfo}/>
         <button type="submit">Submit</button>
       </form>
     </div>
