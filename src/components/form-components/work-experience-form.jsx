@@ -1,16 +1,18 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
+import generateUniqueId from '../utils/id-generator';
+import createJob from './create-job';
 
 export default function WorkExperienceSection({ updateParent }) {
   const [workExperience, setWorkExperience] = useState({
-    experience: [
+    jobs: [
       {
         companyName: "",
         jobTitle: "",
         startDate: "",
         endDate: "",
         responsibilities: "",
-        id: "",
+        id: 0,
       }
     ]
   }); // end useState
@@ -21,79 +23,95 @@ export default function WorkExperienceSection({ updateParent }) {
     const { name, value } = e.target;
     setWorkExperience((prevData) => ({
       ...prevData,
-      experience: prevData.experience.map((job) => { 
+      jobs: prevData.jobs.map((job) => { 
         if (job.id === currentId) { 
           return { ...job, [name]: value }; // Update the specific job 
-          }  job; // Return the job unchanged if it doesn't match 
+          } return job; // Return the job unchanged if it doesn't match 
       }) // end map
     })) // end setState
   } // end handleChange
 
   useEffect(() => {
-    updateParent(workExperience.experience)
-  }, [workExperience.experience]);
+    updateParent(workExperience.jobs)
+  }, [workExperience.jobs]);
+
+  const setJobId = (job) => {
+    const idList = workExperience.jobs
+      .map(job => job.id)
+      .filter(id => id !== currentId);
+    const currentJob = typeof job === "string" ? 
+    workExperience.jobs.find(job => job.id == currentId) :
+    job;
+    const companyName = currentJob?.companyName || "tempName";
+    const id = generateUniqueId(companyName, idList);
+    setWorkExperience((prevData) => ({
+      ...prevData,
+      jobs: prevData.jobs.map(j => 
+        j.id === currentId ? { ...j, id } : j
+      )
+    }));
+    setCurrentId(id);
+  }
+
+    const addJob = () => {
+      const _job = workExperience.jobs.find(job => job.id == currentId)
+      if (!_job.companyName.length > 0) return;
+      const newJob = createJob();
+      setCurrentId(newJob);
+      setWorkExperience(prevData => ({
+        ...prevData,
+        jobs: [...prevData.jobs, newJob]
+      }))
+    }
+
+    const selectNextJob = () => {
+      const jobIndex = workExperience.jobs.indexOf(workExperience.jobs.find(job => {
+        return job.id == currentId}));
+        // % operator loops the courseIndex
+        setCurrentId(workExperience.jobs[(jobIndex + 1) % workExperience.jobs.length].id);
+    }
+    
+    const selectPreviousJob = () => {
+      const jobIndex = workExperience.jobs.indexOf(workExperience.jobs.find(job => {
+          return job.id == currentId;
+      }));
+      // Use the % operator to loop the courseIndex
+      setCurrentId(workExperience.jobs[
+          (jobIndex - 1 + workExperience.jobs.length) % workExperience.jobs.length
+      ].id);
+    }
 
   return (
-    <div>
+    <div data-id={currentId} className="experience-section">
         <h3>Work Experience</h3>
-      <div>
-        <label>Company Name:</label>
-        <input
-          type="text"
-          name="companyName"
-          value={workExperience.companyName}
-          onChange={handleChange}
-        />
+      <div className="input-field-wrapper">
+      {Object.entries(workExperience.jobs.find((job) => 
+        job.id === currentId)).map(([key, value]) => {
+          if(key !== "id")
+          return (
+            <div key={key} className="input-field-container"> 
+            <label>{key}:</label> 
+            <input type="text" name={key} value={value} className={`input-${key}`}
+              onChange={(e) => handleChange(e)} 
+              onBlur={key === "companyName" ? () => setJobId(value) : undefined} 
+            /> 
+            </div>) 
+          }) // end map
+        }
+             <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', 
+                    paddingTop: '1rem',
+      }}>
+        <button onClick={selectPreviousJob} type='button'>&lt;</button>
+        <button onClick={addJob} type='button'>+</button>
+        <button onClick={selectNextJob} type='button'>&gt;</button>
       </div>
-      <div>
-        <label>Job Title:</label>
-        <input
-          type="text"
-          name="jobTitle"
-          value={workExperience.jobTitle}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label>Start Date:</label>
-        <input
-          type="text"
-          name="startDate"
-          value={workExperience.startDate}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label>End Date:</label>
-        <input
-          type="text"
-          name="endDate"
-          value={workExperience.endDate}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label>Responsibilities:</label>
-        <textarea
-          name="responsibilities"
-          value={workExperience.responsibilities}
-          onChange={handleChange}
-        />
       </div>
     </div>
   );
 }
 
 WorkExperienceSection.propTypes = {
-  formData: PropTypes.shape({
-    companyName: PropTypes.string.isRequired,
-    jobTitle: PropTypes.string.isRequired,
-    startDate: PropTypes.string.isRequired,
-    endDate: PropTypes.string.isRequired,
-    responsibilities: PropTypes.string.isRequired,
-  }).isRequired,
-  
-  handleChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func,
   updateParent: PropTypes.func,
 
 };
