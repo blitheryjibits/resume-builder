@@ -46,6 +46,8 @@
     justify-content: center;
 }
 .person-info{}
+
+/* work experience section */
 .work-experience{}
 
 /* education section */
@@ -79,16 +81,16 @@ div.section-container p:nth-child(even){
     justify-content: end;
 }
 
-.section-schoolName{
+.section-School-Name{
     display: flex;
     flex-grow: 1;
-    min-width: 90%;
+    min-width: 80%;
     font-size: 1.3em;
     font-weight: bold;
     color: #333;
     border: none;
 }
-.section-schoolName::after {
+.section-School-Name::after {
         content: '';
         flex-grow: 1;
         border-bottom: 1px dashed #333;
@@ -97,7 +99,7 @@ div.section-container p:nth-child(even){
         transform: translateY(-.1em); /* Adjust the value to position the line vertically */
 }
 
-.section-graduationYear{
+.section-Graduation-Year{
     font-size: 1.3em;
     padding-left: 0.5em;
     font-weight: bold;
@@ -106,7 +108,7 @@ div.section-container p:nth-child(even){
 
 
 
-.section-degree{
+.section-Degree{
     min-width: 90%;
     flex-grow: 1;
 }
