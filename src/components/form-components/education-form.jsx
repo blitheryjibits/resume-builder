@@ -7,10 +7,10 @@ export default function EducationInformationSection({ updateParent }) {
   
   const [educationInfo, setEducationInfo] = useState({
     courses: [{
-      schoolName: "", 
-      graduationYear: "",
-      degree: "",
-      GPA: "",
+      "School-Name": "", 
+      "Graduation-Year": "",
+      "Degree": "",
+      "GPA": "",
       id: 0
       },
     ]
@@ -54,7 +54,7 @@ export default function EducationInformationSection({ updateParent }) {
 
   const addCourse = () => {
     const _course = educationInfo.courses.find(course => course.id == currentCourseId)
-    if (!_course.schoolName.length > 0) return;
+    if (!_course["School-Name"].length > 0) return;
     const newCourse = createCourse();
     setCourseId(newCourse);
     setEducationInfo(prevData => ({
@@ -70,7 +70,7 @@ export default function EducationInformationSection({ updateParent }) {
     const currentCourse = typeof course === "string" ? 
     educationInfo.courses.find(course => course.id == currentCourseId) :
     course;
-    const courseName = currentCourse?.schoolName || "tempName";
+    const courseName = currentCourse?.["School-Name"] || "tempName";
     const id = generateUniqueId(courseName, idList);
     currentCourse.id = id;
     setCurrentCourseId(id);
@@ -87,10 +87,10 @@ export default function EducationInformationSection({ updateParent }) {
           if(key !== "id")
             return (
               <div key={key} className="input-field-container"> 
-              <label>{key}:</label> 
+              <label>{String(key).replace(/-/g, " ")}:</label> 
               <input type="text" name={key} value={value} className={`input-${key}`}
               onChange={(e) => handleChange(e)} 
-              onBlur={key === "schoolName" ? () => setCourseId(value) : undefined} 
+              onBlur={key === "School-Name" ? () => setCourseId(value) : undefined} 
               /> 
             </div>) 
           }) // end map

@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react';
 
 export default function PersonalInformationSection({ updateParent }) {
   const [personalInfo, setPersonalInfo] = useState({
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      email: "",
-      linkedIn: "",
-      github: "",
-      website: "",
+      "First-Name": "",
+      "Last-Name": "",
+      "Phone-Number": "",
+      "Email": "",
+      "LinkedIn": "",
+      "GitHub": "",
+      "Website": "",
   })
 
   const handleChange = (e) => { 
@@ -29,7 +29,7 @@ export default function PersonalInformationSection({ updateParent }) {
         <div className='input-field-wrapper'>
             {Object.entries(personalInfo).map(([key, value]) => (
                 <div key={key} className="input-field-container">
-                    <label>{key.charAt(0).toUpperCase() + key.slice(1)}:</label>
+                    <label>{String(key).replace(/-/g, " ")}:</label>
                     <input
                         type={key === 'email' ? 'email' : key === 'phoneNumber' ? 'tel' : 'text'}
                         name={key}
@@ -44,13 +44,7 @@ export default function PersonalInformationSection({ updateParent }) {
   }
 
   PersonalInformationSection.propTypes = {
-      firstName: PropTypes.string,
-      lastName: PropTypes.string,
-      phoneNumber: PropTypes.string,
-      email: PropTypes.string,
-      linkedIn: PropTypes.string,
-      github: PropTypes.string,
-      website: PropTypes.string,
+     
     handleChange: PropTypes.func,
     updateParent: PropTypes.func,
   };

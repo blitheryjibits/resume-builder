@@ -7,11 +7,11 @@ export default function WorkExperienceSection({ updateParent }) {
   const [workExperience, setWorkExperience] = useState({
     jobs: [
       {
-        companyName: "",
-        jobTitle: "",
-        startDate: "",
-        endDate: "",
-        responsibilities: "",
+        "Job-Title": "",
+        "Company-Name": "",
+        "Start-Date": "",
+        "End-Date": "",
+        "Responsibilities": "",
         id: 0,
       }
     ]
@@ -42,7 +42,7 @@ export default function WorkExperienceSection({ updateParent }) {
     const currentJob = typeof job === "string" ? 
     workExperience.jobs.find(job => job.id == currentId) :
     job;
-    const companyName = currentJob?.companyName || "tempName";
+    const companyName = currentJob?.["Company-Name"] || "tempName";
     const id = generateUniqueId(companyName, idList);
     setWorkExperience((prevData) => ({
       ...prevData,
@@ -55,9 +55,9 @@ export default function WorkExperienceSection({ updateParent }) {
 
     const addJob = () => {
       const _job = workExperience.jobs.find(job => job.id == currentId)
-      if (!_job.companyName.length > 0) return;
+      if (!_job["Company-Name"].length > 0) return;
       const newJob = createJob();
-      setCurrentId(newJob);
+      setCurrentId(newJob.id);
       setWorkExperience(prevData => ({
         ...prevData,
         jobs: [...prevData.jobs, newJob]
@@ -90,10 +90,10 @@ export default function WorkExperienceSection({ updateParent }) {
           if(key !== "id")
           return (
             <div key={key} className="input-field-container"> 
-            <label>{key}:</label> 
+            <label>{String(key).replace(/-/g, " ")}:</label> 
             <input type="text" name={key} value={value} className={`input-${key}`}
               onChange={(e) => handleChange(e)} 
-              onBlur={key === "companyName" ? () => setJobId(value) : undefined} 
+              onBlur={key === "Company-Name" ? () => setJobId(value) : undefined} 
             /> 
             </div>) 
           }) // end map

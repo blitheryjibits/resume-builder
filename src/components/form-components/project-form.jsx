@@ -5,8 +5,8 @@ import generateUniqueId from '../utils/id-generator';
 export default function ProjectSection({ updateParent }) {
   const [projectData, setProjectData] = useState({
     projects: [{ 
-      projectName: '', 
-        projectDescription: '',
+      "Project-Name": '', 
+        "Project-Description": '',
         id: 0
       },
     ]
@@ -50,7 +50,7 @@ export default function ProjectSection({ updateParent }) {
 
   const addProject = () => {
     const _course = projectData.projects.find(project => project.id == currentProjectId)
-    if (!_course.schoolName.length > 0) return;
+    if (!_course["School-Name"].length > 0) return;
     const newCourse = createProject();
     setProjectId(newCourse);
     setProjectData(prevData => ({
@@ -74,8 +74,8 @@ export default function ProjectSection({ updateParent }) {
 
   const createProject = () => {
     return {
-      projectName: '',
-      projectDescription: '',
+      "Project-Name": '',
+      "Project-Description": '',
       id: 0
     }
   }
@@ -89,7 +89,7 @@ export default function ProjectSection({ updateParent }) {
             if(key !== "id")
               return (
                 <div key={key} className="input-field-container"> 
-                <label>{key}:</label>
+                <label>{String(key).replace(/-/g, " ")}:</label>
                 <input
                   type="text"
                   name={key}
