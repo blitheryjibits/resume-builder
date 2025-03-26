@@ -8,9 +8,9 @@ export default function WorkExperienceSection({ updateParent }) {
     jobs: [
       {
         "Job-Title": "",
-        "Company-Name": "",
         "Start-Date": "",
         "End-Date": "",
+        "Company-Name": "",
         "Responsibilities": "",
         id: 0,
       }
@@ -91,10 +91,23 @@ export default function WorkExperienceSection({ updateParent }) {
           return (
             <div key={key} className="input-field-container"> 
             <label>{String(key).replace(/-/g, " ")}:</label> 
-            <input type="text" name={key} value={value} className={`input-${key}`}
-              onChange={(e) => handleChange(e)} 
-              onBlur={key === "Company-Name" ? () => setJobId(value) : undefined} 
-            /> 
+            {key === "Responsibilities" ? (
+        <textarea
+          name={key}
+          value={value}
+          className={`input-${key}`}
+          onChange={(e) => handleChange(e)}
+        />
+      ) : (
+        <input
+          type="text"
+          name={key}
+          value={value}
+          className={`input-${key}`}
+          onChange={(e) => handleChange(e)}
+          onBlur={key === "Company-Name" ? () => setJobId(value) : undefined}
+        />
+      )}
             </div>) 
           }) // end map
         }
