@@ -52,12 +52,20 @@ form {
   /* Style for the form inputs */
   input[type="text"],
   input[type="tel"],
-  input[type="email"],
-  textarea {
+  input[type="email"]
+  {
     flex: 1;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     font-size: 16px;
+  }
+
+  textarea {
+    font-family: inherit;
+    padding: 0.5em;
+    width: 80%; /* Adjust width to match the container */
+    height: 80px; /* Approximate height for 5 rows */
+    resize: vertical; /* Allow vertical resizing only */
   }
