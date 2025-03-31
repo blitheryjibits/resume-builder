@@ -90,6 +90,12 @@ div.section-container p{
     border: none;
 }
 
+.section-Start-Date::after {
+    content: "to";
+    margin-left: 0.2em;
+    margin-right:0.2em;
+}
+
 .section-Responsibilities {
     
 }
