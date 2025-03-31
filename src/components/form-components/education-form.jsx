@@ -88,7 +88,7 @@ export default function EducationInformationSection({ updateParent }) {
             return (
               <div key={key} className="input-field-container"> 
               <label>{String(key).replace(/-/g, " ")}:</label> 
-              <input type="text" name={key} value={value} className={`input-${key}`}
+              <input type={key === "Graduation-Year" ? "date" : "text"} name={key} value={value} className={`input-${key}`}
               onChange={(e) => handleChange(e)} 
               onBlur={key === "School-Name" ? () => setCourseId(value) : undefined} 
               /> 
