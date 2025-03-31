@@ -52,7 +52,8 @@ form {
   /* Style for the form inputs */
   input[type="text"],
   input[type="tel"],
-  input[type="email"]
+  input[type="email"],
+  input[type="date"]
   {
     flex: 1;
     padding: 10px;
