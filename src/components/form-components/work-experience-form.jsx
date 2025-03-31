@@ -100,7 +100,7 @@ export default function WorkExperienceSection({ updateParent }) {
         />
       ) : (
         <input
-          type="text"
+          type={key.includes("Date") ? "date" : "text"}
           name={key}
           value={value}
           className={`input-${key}`}
