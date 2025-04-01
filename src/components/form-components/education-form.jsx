@@ -7,11 +7,11 @@ export default function EducationInformationSection({ updateParent }) {
   
   const [educationInfo, setEducationInfo] = useState({
     courses: [{
-      schoolName: "", 
-        degree: "",
-        fieldOfStudy: "",
-        graduationYear: "",
-        id: 0
+      "School-Name": "", 
+      "Graduation-Year": "",
+      "Degree": "",
+      "GPA": "",
+      id: 0
       },
     ]
   });
@@ -54,7 +54,7 @@ export default function EducationInformationSection({ updateParent }) {
 
   const addCourse = () => {
     const _course = educationInfo.courses.find(course => course.id == currentCourseId)
-    if (!_course.schoolName.length > 0) return;
+    if (!_course["School-Name"].length > 0) return;
     const newCourse = createCourse();
     setCourseId(newCourse);
     setEducationInfo(prevData => ({
@@ -70,7 +70,7 @@ export default function EducationInformationSection({ updateParent }) {
     const currentCourse = typeof course === "string" ? 
     educationInfo.courses.find(course => course.id == currentCourseId) :
     course;
-    const courseName = currentCourse?.schoolName || "tempName";
+    const courseName = currentCourse?.["School-Name"] || "tempName";
     const id = generateUniqueId(courseName, idList);
     currentCourse.id = id;
     setCurrentCourseId(id);
@@ -83,36 +83,36 @@ export default function EducationInformationSection({ updateParent }) {
       <h3>Education</h3>
       <div className='input-field-wrapper'>
         {Object.entries(educationInfo.courses.find((course) => 
-        course.id === currentCourseId)).map(([key, value]) => 
-          {
-            if(key !== "id")return (<div key={key} className="input-field-container"> 
-            <label>{key}:
-              </label> 
-              <input type="text" name={key} value={value} 
+        course.id === currentCourseId)).map(([key, value]) => {
+          if(key !== "id")
+            return (
+              <div key={key} className="input-field-container"> 
+              <label>{String(key).replace(/-/g, " ")}:</label> 
+              <input type={key === "Graduation-Year" ? "date" : "text"} name={key} value={value} className={`input-${key}`}
               onChange={(e) => handleChange(e)} 
-              onBlur={key === "schoolName" ? () => setCourseId(value) : undefined} 
+              onBlur={key === "School-Name" ? () => setCourseId(value) : undefined} 
               /> 
-              </div>) })}
+            </div>) 
+          }) // end map
+        }
       <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', 
                     paddingTop: '1rem',
-       }}>
-      <button onClick={selectPreviousCourse} type='button'>&lt;</button>
-      <button onClick={addCourse} type='button'>+</button>
-      <button onClick={selectNextCourse} type='button'>&gt;</button>
+      }}>
+        <button onClick={selectPreviousCourse} type='button'>&lt;</button>
+        <button onClick={addCourse} type='button'>+</button>
+        <button onClick={selectNextCourse} type='button'>&gt;</button>
       </div>
       </div>
     </div>
   );
 }
 
+// why does this need to IDs?
 EducationInformationSection.propTypes = {
   courseId: PropTypes.number,
   coursesArray: PropTypes.arrayOf (
     PropTypes.shape({
-    schoolName: PropTypes.string,
-    degree: PropTypes.string,
-    fieldOfStudy: PropTypes.string,
-    graduationYear: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   })
 ),
   handleChange: PropTypes.func,

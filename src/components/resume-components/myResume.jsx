@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import "../../styles/resumeStyle.css";
 import HeaderSection from "./resume-header-section";
 import EducationSection from "./resume-education-section";
+import WorkExperienceSection from "./resume-workExperience-section";
+import ProjectSection from "./resume-project-section";
 
 export default function CreateResume({ appData }) {
   return (
@@ -11,9 +13,9 @@ export default function CreateResume({ appData }) {
         {/* add download button */}
         <div className="page">
           <HeaderSection className="res-head" data={ appData.contactDetails } />
-          <EducationSection data={ appData.courses } />
-          {/* <div className="work-experience">{appData.experiences}</div>
-          <div className="projects">{appData.projects}</div> */}
+          <EducationSection data= { appData.courses } />
+          <WorkExperienceSection data = { appData.experience } />
+          <ProjectSection data= { appData.projects } />
         </div>
       </div>
     </>
@@ -25,7 +27,7 @@ CreateResume.propTypes = {
     contactDetails: PropTypes.object,
     courses: PropTypes.arrayOf(PropTypes.object),
     skills: PropTypes.arrayOf(PropTypes.object),
-    experiences: PropTypes.arrayOf(PropTypes.object),
+    experience: PropTypes.arrayOf(PropTypes.object),
     projects: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
 };
