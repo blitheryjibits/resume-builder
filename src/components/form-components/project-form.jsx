@@ -90,12 +90,21 @@ export default function ProjectSection({ updateParent }) {
               return (
                 <div key={key} className="input-field-container"> 
                 <label>{String(key).replace(/-/g, " ")}:</label>
-                <input
+                {key === "Project-Description" ? 
+                (
+                  <textarea
+                  name={key}
+                  value={value}
+                  onChange={handleChange}
+                  />
+                ) : 
+                ( <input
                   type="text"
                   name={key}
                   value={value}
                   onChange={handleChange}
-                />
+                />)}
+               
             </div>);
           })// end map
         }
