@@ -49,13 +49,13 @@ export default function ProjectSection({ updateParent }) {
   }
 
   const addProject = () => {
-    const _course = projectData.projects.find(project => project.id == currentProjectId)
-    if (!_course["School-Name"].length > 0) return;
-    const newCourse = createProject();
-    setProjectId(newCourse);
+    const _project = projectData.projects.find(project => project.id === currentProjectId)
+    if (!_project["Project-Name"].length > 0) return;
+    const newProject = createProject();
+    setProjectId(newProject);
     setProjectData(prevData => ({
       ...prevData,
-      courses: [...prevData.courses, newCourse]
+      projects: [...prevData.projects, newProject]
     }))
   }
 
@@ -76,7 +76,7 @@ export default function ProjectSection({ updateParent }) {
     return {
       "Project-Name": '',
       "Project-Description": '',
-      id: 0
+      id: projectData.projects.length-1
     }
   }
 
