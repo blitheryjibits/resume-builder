@@ -33,8 +33,8 @@ const MyForm = ({ setAppData }) => {
   }
   return (
     <div className="form-container">
-      <h1>Job Application Form</h1>
       <form onSubmit={handleSubmit}>
+        <h2>Job Application Form</h2>
         <PersonalInformationSection updateParent={updateContactInfo} />
         <EducationInformationSection updateParent={updateCourseInfo} />
         <WorkExperienceSection updateParent={updateExperienceInfo} />

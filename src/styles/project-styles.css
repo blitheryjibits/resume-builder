@@ -1,20 +1,12 @@
 .projects {
-  margin-bottom: 2rem;
+  font-size: 0.5rem;
 }
 
-.section-title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.section-container {
-  margin-bottom: 1.5rem;
-}
 
 .section-Project-Name {
   font-weight: bold;
-  font-size: 1.1rem;
-  margin-bottom: 0.3em;
+  font-size: .6rem;
+  margin-bottom: 0.1em;
   width: 100%;
 }
 
@@ -22,5 +14,5 @@
   margin-top: 0;
   margin-bottom: 0.8em;
   color: #444;
-  font-size: 1rem;
+  font-size: .5rem;
 }

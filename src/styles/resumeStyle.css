@@ -1,11 +1,11 @@
 /* Creates a static box that holds the resume page */
 .resume-container{
     position: fixed;
-    top: 0%;
+    top: 10%;
     bottom: 0%;
     right: 0%;
-    width: 50%;
-    height: 100%;
+    width: 40%;
+    height: 100vh;
     display: flex;
     flex: 1 1 0%;
     -webkit-box-align: center;
@@ -29,10 +29,6 @@
     transform: scale(1); /* Prevent scaling */
     /* A4 paper 1240 x 1754 in pixels */
 }
-.resume-container{
-
-}
-.resume-title{}
 
 .res-head{
     height: min(10%);
@@ -57,7 +53,7 @@
 }
 
 div.section-container p{
-    margin: 0;
+    margin: .1rem;
 }
 
 
@@ -66,10 +62,7 @@ div.section-container p{
     display: flex;
     justify-content: center;
 }
-.person-info{}
 
-/* work experience section */
-.work-experience{}
 
 .section-Job-Title {
     display: flex;
@@ -96,15 +89,13 @@ div.section-container p{
     margin-right:0.2em;
 }
 
-.section-Responsibilities {
-    
-}
 
 /* education section */
 .education{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    margin-top: .8em;
 }
 
 .education .section-container p:nth-child(even){
@@ -115,8 +106,7 @@ div.section-container p{
 .section-School-Name{
     display: flex;
     flex-grow: 1;
-    min-width: 80%;
-    font-size: 1.3em;
+    font-size: 1em;
     font-weight: bold;
     color: #333;
     border: none;
@@ -131,9 +121,7 @@ div.section-container p{
 }
 
 .section-Graduation-Year{
-    font-size: 1.3em;
     padding-left: 0.5em;
-    font-weight: bold;
     color: #333;
 }
 
