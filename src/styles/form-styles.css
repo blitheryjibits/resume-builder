@@ -77,4 +77,5 @@ form {
     height: 80px; /* Approximate height for 5 rows */
     resize: vertical; /* Allow vertical resizing only */
     background-color: #d5d4d4;
+    color: #333;
   }
